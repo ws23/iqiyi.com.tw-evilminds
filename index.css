@@ -1,0 +1,96 @@
+body {
+	background-color: #090404; 	
+}
+
+.container {
+	width: 1024px; 	
+}
+
+/* header */
+
+img.logo {
+	margin-top: -10px; 
+	height: 40px; 	
+}
+
+img.amount {
+	position: absolute; 
+	z-index: -1; 	
+}
+
+img.header-like {
+	margin-top: -15px; 
+	height: 40px; 
+	width: 40px; 
+	margin-bottom: -10px; 	
+}
+
+.fblinkamount {
+	margin-top: 15px; 	
+}
+
+img.background {
+	position: absolute; 
+	width: 2000px; 
+	top: 50px; 
+	left: 50%; 
+	margin-left: -1000px;
+	opacity: 0.45;
+	filter: alpha(opacity=40);   
+	z-index: -1; 
+}
+
+img.act-logo {
+	position: relative; 
+	top: 70px; 
+	left: 50%; 
+	margin-bottom: 90px; 
+	margin-left: -121px; 
+}
+
+/* body */
+
+.focus {
+	background-color: #090404;
+	width: 920px;
+	height: 540px;  
+	position: relative; 
+	left: 50%; 
+	margin-left: -460px; 
+	text-align: center; 
+	padding: 10px;  
+}
+
+embed.embed {
+	width: 900px; 
+	height: 520px; 
+}
+
+
+
+.panel-theme {
+	background-color: #4D0003; 
+	color: #FF555B; 
+}
+
+.panel-body {
+	background-color: #191414; 
+	color: #EEEEEE; 	
+}
+
+
+
+
+.photo img {
+	width: 160px; 
+	height: 90px;
+	margin-left: 14px; 
+	margin-right: 14px; 
+	margin-top: 10px; 
+	margin-bottom: 10px; 
+}
+
+img.full {
+	width: 	940px; 
+	height: 576px; 
+}
