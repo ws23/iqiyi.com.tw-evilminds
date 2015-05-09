@@ -3,7 +3,7 @@ body {
 }
 
 .container {
-	width: 1024px; 	
+	width: 1024px;
 }
 
 /* header */
@@ -76,6 +76,14 @@ embed.embed {
 .panel-body {
 	background-color: #191414; 
 	color: #EEEEEE; 	
+}
+
+.panel-body a {
+	color: #EEEEEE; 	
+}
+
+.panel-body a:hover {
+	color: #AAAAAA; 	
 }
 
 .video {

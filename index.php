@@ -100,9 +100,22 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 <!-- body start -->
 <div class="container">
 	<!-- focus -->
-	<div class="focus">
-		<embed id="embed" class="embed" src="http://player.video.qiyi.com/ddfd1db5c177b5330f30752149daaaee/0/1985/v_19rrnsxt9k.swf-albumId=202467501-tvId=364887300-isPurchase=0-cnId=2" quality="high" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
-	</div>
+	<script>
+		function changeVideo(str) {
+			src = document.getElementById('focus'); 
+			src.innerHTML = ""; 
+			src.innerHTML = '<embed id="embed" class="embed" src="' + str + '" quality="high" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>'; 
+		}
+
+	</script>
+	<div id ="focus" class="focus"><?php
+		$result = $DBmain->query("SELECT `videoURL` FROM `video` WHERE `state` = 0 ORDER BY `id` DESC LIMIT 1; "); 
+		$row = $result->fetch_array(MYSQLI_BOTH); 
+	?>
+
+		<embed id="embed" class="embed" src="<?php echo $row['videoURL']; ?>" quality="high" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+	
+	?></div>
 	<!-- 劇集列表 -->
 	<a name="list"></a>
 	<div class="panel panel-theme">
@@ -110,11 +123,14 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 			<h3 class="panel-title">劇集列表</h3>
 		</div>
 		<div class="panel-body">
-		<?php for($i=0; $i<6; $i++){ ?>
+		<?php 
+			$result = $DBmain->query("SELECT * FROM `video` WHERE `state` = 0 ORDER BY `id` ASC; "); 
+			while($row = $result->fetch_array(MYSQLI_BOTH)){ 
+		?>
 			<div class="video">
-				<a href="#"><img src="img/uploads/video.jpg"/></a><br />
-				<strong>第 <?php echo $i; ?> 集</strong><br />
-				喔耶耶耶
+				<p onclick="changeVideo('<?php echo $row['videoURL']; ?>')"><img src="<?php echo $URLPv . $row['imageURL']; ?>"/></p>
+				<a href="<?php echo $row['linkURL']; ?>" target="_blank"><strong><?php echo $row['title']; ?></strong><br />
+				<?php echo $row['text']; ?></a>
 			</div>
 		<?php } ?>
 		</div>
@@ -127,11 +143,14 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 			<h3 class="panel-title">預告片</h3>
 		</div>
 		<div class="panel-body">
-		<?php for($i=0; $i<12; $i++){ ?>
+		<?php 
+			$result = $DBmain->query("SELECT * FROM `next` WHERE `state` = 0 ORDER BY `id` ASC; "); 
+			while($row = $result->fetch_array(MYSQLI_BOTH)){
+		?>
 			<div class="next">
-				<a href="#"><img src="img/uploads/XDrz.jpg" /></a><br />
-				<strong>我是標題</strong><br />
-				XDDDD
+				<p><a href="<?php echo $row['linkURL']; ?>" target="_blank"><img src="<?php echo $URLPv . $row['imageURL']; ?>"/></a></p>
+				<a href="<?php echo $row['linkURL']; ?>" target="_blank"><strong><?php echo $row['title']; ?></strong><br />
+				<?php echo $row['text']!=''? $row['text'] : '&nbsp;'; ?></a>
 			</div>
 		<?php } ?>
 		</div>
@@ -144,11 +163,14 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 			<h3 class="panel-title">精彩花絮</h3>
 		</div>
 		<div class="panel-body">
-		<?php for($i=0; $i<12; $i++ ){ ?>
+		<?php 
+			$result = $DBmain->query("SELECT * FROM `other` WHERE `state` = 0 ORDER BY `id` DESC; "); 
+			while($row = $result->fetch_array(MYSQLI_BOTH)) {
+		 ?>
 			<div class="other">
-				<a href="#"><img src="img/uploads/XDrz.jpg" /></a><br />
-				<strong>我還是標題</strong><br />
-				啊嗚嗚嗚嗚嗚~~~~~
+				<p><a href="<?php echo $row['linkURL']; ?>" target="_blank"><img src="<?php echo $URLPv . $row['imageURL']; ?>" /></a></p>
+				<a href="<?php echo $row['linkURL']; ?>" target="_blank"><strong><?php echo $row['title']; ?></strong><br />
+				<?php echo $row['text']!=''? $row['text'] : '&nbsp; '; ?></a>
 			</div>
 		<?php  }?>	
 		</div>
@@ -168,15 +190,15 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 			<h3 class="panel-title">劇照</h3>
 		</div>
 		<div class="panel-body">
-			<img id ="photo-full" class="full" src="img/uploads/full.jpg" />
-		<?php
-			$amount = 12;
-			for($i=0; $i<$amount; $i++){
-					?>
-					<img src="img/uploads/thumbnails.jpg" onclick="callFull('img/uploads/full.jpg')" />
-					<?php	
-			}
-		?>	
+		<?php 
+			$result = $DBmain->query("SELECT * FROM `photo` WHERE `state` = 0 ORDER BY `id` ASC LIMIT 10; "); 
+			$row = $result->fetch_array(MYSQLI_BOTH); 
+		?>
+			<img id ="photo-full" class="full" src="<?php echo $URLPv . $row['full']; ?>" />
+			<hr />
+		<?php	do {	?>
+				<img src="<?php echo $URLPv . $row['thumbnail']; ?>" onclick="callFull('<?php echo $URLPv . $row['full']; ?>')" />
+		<?php	} while($row = $result->fetch_array(MYSQLI_BOTH)); 	?>	
 		</div>
 	</div>
 
