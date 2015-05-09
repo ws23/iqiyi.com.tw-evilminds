@@ -111,11 +111,11 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 		</div>
 		<div class="panel-body">
 		<?php for($i=0; $i<6; $i++){ ?>
-		<div class="video">
-			<p><a href="#"><img src="img/uploads/video.jpg"/></a><br />
-			第 <?php echo $i; ?> 集<br />
-			喔耶耶耶</p>
-		</div>
+			<div class="video">
+				<a href="#"><img src="img/uploads/video.jpg"/></a><br />
+				第 <?php echo $i; ?> 集<br />
+				喔耶耶耶
+			</div>
 		<?php } ?>
 		</div>
 	</div>
@@ -127,7 +127,13 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 			<h3 class="panel-title">預告片</h3>
 		</div>
 		<div class="panel-body">
-			XDD
+		<?php for($i=0; $i<12; $i++){ ?>
+			<div class="next">
+				<a href="#"><img src="img/uploads/XDrz.jpg" /></a><br />
+				我是標題<br />
+				XDDDD
+			</div>
+		<?php } ?>
 		</div>
 	</div>
 	
