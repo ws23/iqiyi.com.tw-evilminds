@@ -104,20 +104,19 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 		<embed id="embed" class="embed" src="http://player.video.qiyi.com/ddfd1db5c177b5330f30752149daaaee/0/1985/v_19rrnsxt9k.swf-albumId=202467501-tvId=364887300-isPurchase=0-cnId=2" quality="high" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
 	</div>
 	<!-- 劇集列表 -->
-	<script>
-		function changeVideo(url){
-			src = document.getElementById('embed'); 
-			src.setAttribute('src', url); 
-		}
-	</script>
-
 	<a name="list"></a>
 	<div class="panel panel-theme">
 		<div class="panel-heading">
 			<h3 class="panel-title">劇集列表</h3>
 		</div>
 		<div class="panel-body">
-			<img src="img/uploads/video.jpg" onclick="changeVideo('http://player.video.qiyi.com/919f040a08407640ea49c477c7630e9b/0/2050/v_19rrnsxt3o.swf-albumId=202467501-tvId=364887800-isPurchase=0-cnId=2')">		
+		<?php for($i=0; $i<6; $i++){ ?>
+		<div class="video">
+			<p><a href="#"><img src="img/uploads/video.jpg"/></a><br />
+			第 <?php echo $i; ?> 集<br />
+			喔耶耶耶</p>
+		</div>
+		<?php } ?>
 		</div>
 	</div>
 
