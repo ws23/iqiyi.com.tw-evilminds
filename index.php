@@ -113,7 +113,7 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 		<?php for($i=0; $i<6; $i++){ ?>
 			<div class="video">
 				<a href="#"><img src="img/uploads/video.jpg"/></a><br />
-				第 <?php echo $i; ?> 集<br />
+				<strong>第 <?php echo $i; ?> 集</strong><br />
 				喔耶耶耶
 			</div>
 		<?php } ?>
@@ -130,7 +130,7 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 		<?php for($i=0; $i<12; $i++){ ?>
 			<div class="next">
 				<a href="#"><img src="img/uploads/XDrz.jpg" /></a><br />
-				我是標題<br />
+				<strong>我是標題</strong><br />
 				XDDDD
 			</div>
 		<?php } ?>
@@ -147,8 +147,8 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 		<?php for($i=0; $i<12; $i++ ){ ?>
 			<div class="other">
 				<a href="#"><img src="img/uploads/XDrz.jpg" /></a><br />
-				我還是標題<br />
-				啊嗚嗚嗚嗚嗚~~~~~<br />
+				<strong>我還是標題</strong><br />
+				啊嗚嗚嗚嗚嗚~~~~~
 			</div>
 		<?php  }?>	
 		</div>
@@ -187,20 +187,13 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 			<h3 class="panel-title">抽獎活動</h3>
 		</div>
 		<div class="panel-body">
-			<h1>活動參與辦法</h1>
-			<h2>二級標題</h2>
-			<p>第一段落</p>
-			<p>第二段落<br />
-			<ul>
-				<li>列點一</li>
-				<li>列點二</li>
-			</ul>
-			</p>
-			<p>第三段落</p>
-		</div>
+		<?php
+			require_once(dirname(__FILE__) . "/rules.php"); 
+		?>
 	</div>
+</div>
 
-	<!-- 網友互動 -->
+<!-- 網友互動 -->
 	<a name="fb"></a>
 	<div class="panel panel-theme">
 		<div class="panel-heading">
@@ -212,5 +205,6 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 	</div>
 </div>
 <!-- body end -->
+<?php require_once(dirname(__FILE__) . "/lib/stdEnd.php"); ?> 
 </body>
 </html>
