@@ -1,12 +1,9 @@
-<h1>活動參與辦法</h1>
-<h2>二級標題</h2>
-<p>第一段落</p>
-<p>
-	第二段落<br />
-	<ul>
-		<li>列點一</li>
-		<li>列點二</li>
-	</ul>
-</p>
-<p>第三段落</p>
+<?php 
+	require_once(dirname(__FILE__) . "/config.php"); 
+	require_once(dirname(__FILE__) . "/lib/std.php"); 
 
+	$result = $DBmain->query("SELECT * FROM `rule`, `main` WHERE `main`.`id` = `rule`.`mainID` AND `main`.`engName` = '{$actName}' ORDER BY `rule`.`id` ASC LIMIT 1; "); 
+	$row = $result->fetch_array(MYSQLI_BOTH); 
+	echo $row['text']; 
+	require_once(dirname(__FILE__) . "/lib/stdEnd.php"); 
+?>
