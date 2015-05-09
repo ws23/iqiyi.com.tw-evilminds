@@ -144,7 +144,13 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 			<h3 class="panel-title">精彩花絮</h3>
 		</div>
 		<div class="panel-body">
-			XDD
+		<?php for($i=0; $i<12; $i++ ){ ?>
+			<div class="other">
+				<a href="#"><img src="img/uploads/XDrz.jpg" /></a><br />
+				我還是標題<br />
+				啊嗚嗚嗚嗚嗚~~~~~<br />
+			</div>
+		<?php  }?>	
 		</div>
 	</div>
 
