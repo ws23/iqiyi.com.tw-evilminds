@@ -1,0 +1,144 @@
+body {
+	background-color: #090404; 	
+}
+
+.container {
+	width: 1024px;
+}
+
+/* header */
+
+img.logo {
+	margin-top: -10px; 
+	height: 40px; 	
+}
+
+img.amount {
+	position: absolute; 
+	z-index: -1; 	
+}
+
+img.header-like {
+	margin-top: -15px; 
+	height: 40px; 
+	width: 40px; 
+	margin-bottom: -10px; 	
+}
+
+.fblinkamount {
+	margin-top: 15px; 	
+}
+
+img.background {
+	position: absolute; 
+	width: 2000px; 
+	top: 50px; 
+	left: 50%; 
+	margin-left: -1000px;
+	opacity: 0.45;
+	filter: alpha(opacity=40);   
+	z-index: -1; 
+}
+
+img.act-logo {
+	position: relative; 
+	top: 70px; 
+	left: 50%; 
+	margin-bottom: 90px; 
+	margin-left: -121px; 
+}
+
+/* body */
+
+.focus {
+	background-color: #090404;
+	width: 920px;
+	height: 540px;  
+	position: relative; 
+	left: 50%; 
+	margin-left: -460px; 
+	text-align: center; 
+	padding: 10px;  
+}
+
+embed.embed {
+	width: 900px; 
+	height: 520px; 
+}
+
+.panel {
+	margin-top: 70px; 	
+}
+
+.panel-theme {
+	background-color: #EEEEEE; 
+	color: #111111;
+}
+
+.panel-body {
+	background-color: #191414; 
+	color: #EEEEEE; 	
+}
+
+.panel-body a {
+	color: #EEEEEE; 	
+}
+
+.panel-body a:hover {
+	color: #AAAAAA; 	
+}
+
+.video {
+	width: 120px;
+	margin: 5px;  
+	display: inline-block; 	
+
+}
+
+.video img {
+	width: 116px; 
+	height: 65px; 
+}
+
+.next {
+	display: inline-block; 
+	width: 165px;
+	margin-left: 12px;
+	margin-right: 12px; 
+	margin-top: 10px; 
+	margin-bottom: 10px;   
+}
+
+.next img {
+	width: 160px; 
+	height: 90px; 		
+}
+
+
+.other {
+	display: inline-block; 
+	width: 165px; 
+	margin-left: 12px; 
+	margin-right: 12px; 
+	margin-top: 10px; 
+	margin-bottom: 10px; 	
+}
+
+.other img {
+	width: 160px; 
+	height: 90px; 	
+}
+
+.photo img {
+	width: 160px; 
+	height: 90px;
+	margin-left: 14px; 
+	margin-right: 14px; 
+	margin-top: 10px; 
+	margin-bottom: 10px; 
+}
+
+img.full {
+	width: 	940px; 
+	height: 576px; 
+}
