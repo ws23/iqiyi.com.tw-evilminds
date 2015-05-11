@@ -348,8 +348,8 @@ else if($_GET['admin']=="other"){
 		<thead>
 			<tr>
 				<th class="col-md-1">#</th>
-				<th class="col-md-2">標題(7)</th>
-				<th class="col-md-2">子標題(8)</th>
+				<th class="col-md-2">標題(10)</th>
+				<th class="col-md-2">子標題(22)</th>
 				<th class="col-md-1">縮圖連結</th>
 				<th class="col-md-1">影片連結</th>
 				<th class="col-md-1">狀態</th>
@@ -358,48 +358,40 @@ else if($_GET['admin']=="other"){
 		</thead>
 		<tbody>
 <?php
-		$result = $DBmain->query("SELECT * FROM `video` WHERE `state` < 2 ORDER BY `id` ASC; "); 			
+		$result = $DBmain->query("SELECT * FROM `other` WHERE `state` < 2 ORDER BY `id` ASC; "); 			
 		while($row = $result->fetch_array(MYSQLI_BOTH)){
 ?>
 			<tr>
 				<td><?php echo $row['id']; ?></td>
 				<td>
 					<div class="form-group">
-						<input readonly class="form-control" type="text" name="v_<?php echo $row['id']; ?>_title" id="v_<?php echo $row['id']; ?>_title" placeholder="標題（限7字）" maxlength="7" value="<?php echo $row['title']; ?>" />
+						<input readonly class="form-control" type="text" name="o_<?php echo $row['id']; ?>_title" id="o_<?php echo $row['id']; ?>_title" placeholder="標題（限10字）" maxlength="10" value="<?php echo $row['title']; ?>" />
 					</div>
 				</td>
 				<td>
 					<div class="form-group">
-						<input readonly class="form-control" type="text" name="v_<?php echo $row['id']; ?>_text" id="v_<?php echo $row['id']; ?>_text" placeholder="子標題（限8字）" maxlength="8" value="<?php echo $row['text']; ?>" />
+						<input readonly class="form-control" type="text" name="o_<?php echo $row['id']; ?>_text" id="o_<?php echo $row['id']; ?>_text" placeholder="子標題（限22字）" maxlength="22" value="<?php echo $row['text']; ?>" />
 					</div>
 				</td>
 				<td>
 					<a href="<?php echo $URLPv . $row['imageURL']; ?>" target="_blank">縮圖</a>
 				</td>
 				<td>
-					<div id="v_<?php echo $row['id']; ?>_link_a">
+					<div id="o_<?php echo $row['id']; ?>_link_a">
 						<a href="<?php echo $row['linkURL']; ?>" target="_blank">原始</a>
 					</div>
-					<div id="v_<?php echo $row['id']; ?>_link" style="display: none; ">
-						<input class="form-control" type="text" name="v_<?php echo $row['id']; ?>_link" placeholder="影片原始連結" value="<?php echo $row['linkURL']; ?>" />
+					<div id="o_<?php echo $row['id']; ?>_link" style="display: none; ">
+						<input class="form-control" type="text" name="o_<?php echo $row['id']; ?>_link" placeholder="影片原始連結" value="<?php echo $row['linkURL']; ?>" />
 					</div>
 				</td>
 				<td>
-					<div id="v_<?php echo $row['id']; ?>_video_a">
-						<a href="<?php echo $row['videoURL']; ?>" target="_blank">內嵌</a>
-					</div>
-					<div id="v_<?php echo $row['id']; ?>_video" style="display: none; ">
-						<input class="form-control" type="text" name="v_<?php echo $row['id']; ?>_video" placeholder="內嵌影片網址" value="<?php echo $row['videoURL']; ?>" />
-					</div>
-				</td>
-				<td>
-					<select name="v_<?php echo $row['id']; ?>_state" class="form-control">
+					<select name="o_<?php echo $row['id']; ?>_state" class="form-control">
 						<option value="able" <?php echo $row['state']=='0'? "selected" : "";  ?>>顯示</option>
 						<option value="disable" <?php echo $row['state']=='1'? "selected" : "";  ?>>隱藏</option>
 					</select>
 				</td>
 				<td>
-					<select onchange="Action('v', <?php echo $row['id']; ?>)" name="v_<?php echo $row['id']; ?>_act" class="form-control">
+					<select onchange="Action('o', <?php echo $row['id']; ?>)" name="o_<?php echo $row['id']; ?>_act" class="form-control">
 						<option value="read" selected>檢視</option>
 						<option value="edit">編輯</option>
 						<option value="delete">刪除</option>
@@ -412,27 +404,24 @@ else if($_GET['admin']=="other"){
 			<tr>
 				<td></td>
 				<td>
-					<input id="v_0_title" class="form-control" type="text" name="v_0_title" placeholder="標題（限7字）" maxlength="7" style="display: none; "/>
+					<input id="o_0_title" class="form-control" type="text" name="o_0_title" placeholder="標題（限10字）" maxlength="10" style="display: none; "/>
 				</td>
 				<td>
-					<input id="v_0_text" class="form-control" type="text" name="v_0_text" placeholder="子標題（限8字）" maxlength="8" style="display: none; "/>
+					<input id="o_0_text" class="form-control" type="text" name="o_0_text" placeholder="子標題（限22字）" maxlength="22" style="display: none; "/>
 				</td>
 				<td>
 				</td>
 				<td>
-					<input id="v_0_link" class="form-control" type="text" name="v_0_link" placeholder="影片原始連結" style="display: none; "/>
+					<input id="o_0_link" class="form-control" type="text" name="o_0_link" placeholder="影片原始連結" style="display: none; "/>
 				</td>
 				<td>
-					<input id="v_0_video" class="form-control" type="text" name="v_0_video" placeholder="內嵌影片網址" style="display: none; "/>
-				</td>
-				<td>
-					<select name="v_0_state" class="form-control" style="display: none; ">
+					<select name="o_0_state" class="form-control" style="display: none; ">
 						<option value="able" selected>顯示</option>
 						<option value="disable">隱藏</option>
 					</select>
 				</td>
 				<td>
-					<select onchange="Action('v', 0)" name="v_0_act" class="form-control">
+					<select onchange="Action('o', 0)" name="o_0_act" class="form-control">
 						<option value="read" selected></option>
 						<option value="edit">新增</option>
 					</select>
@@ -441,34 +430,41 @@ else if($_GET['admin']=="other"){
 			<tr>
 				<input class="btn btn-info form-control" type="submit" value="儲存所有變更" />
 			</tr>
-				<tr id="v_0_img" style="display: none; ">
+				<tr id="o_0_img" style="display: none; ">
 					<td colspan="3"><p align="right"><span class="label label-info">image Size: 160x90</p></td>
-					<td colspan="3"><input class="form-control" type="file" name="v_0_img" /></td>
+					<td colspan="3"><input class="form-control" type="file" name="o_0_img" /></td>
 					<td colspan="2"></td>
 				</tr>
 		</tbody>
 	</table>
 </div>
 </form>
-}
+<?php }
 else if($_GET['admin']=="photo"){
-	
-}
-else if($_GET['admin']=="activity"){
-	
-}
+?>
+	<div class="jumbotron">
+		<div class="page-header">
+			<h2>暫時不提供管理服務TAT</h2>
+		</div>
+	</div>
+<?php }
+else if($_GET['admin']=="activity"){ ?>
+    <div class="jumbotron">
+        <div class="page-header">
+            <h2>暫時不提供管理服務TAT</h2>
+        </div>
+    </div>
+<?php }
 else if($_GET['admin']=="logout"){
 	session_destroy(); 
 	locate('index.php'); 
 }
 else { ?>
-	<div class="container">
-		<div class="jumbotron">
-			<div class="page-header">
-				<h2>請點選上方選單進入對應管理介面</h1>
-			</div>
-		<div>
-	</div>
+	<div class="jumbotron">
+		<div class="page-header">
+			<h2>請點選上方選單進入對應管理介面</h1>
+		</div>
+	<div>
 <?php }
 ?>
 </div>
