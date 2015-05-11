@@ -10,6 +10,8 @@
 	<meta name="title" content="<?php echo $titleName; ?>">
 	<meta name="description" content="">
 	<meta name="author" content="臺灣愛奇藝股份有限公司">
+	<meta property="fb:app_id" content="<?php echo $FBCommentID; ?>">
+	<meta property="fb:admins" content="<?php echo $FBAdminID; ?>"/>
 
 	<title><?php echo $titleName; ?></title>
 
@@ -43,14 +45,13 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 	<div id="fb-root"></div>
 	<script>
 		(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0]; 
-			if(d.getElementById(id))
-				return; 
-			js = d.createElement(s); 
-			js.id = id; 
-			js.src="//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=748904491889773&version=v2.0"; 
-			fjs.parentNode.insertBefore(js, fjs); 
-		}(document, 'script', 'facebook-jssdk')); 
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) 
+				return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.3&appId=<?php echo $FBCommentID; ?>";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
 	</script>
 <!-- preprocess end -->
 
@@ -115,7 +116,7 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 
 		<embed id="embed" class="embed" src="<?php echo $row['videoURL']; ?>" quality="high" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
 	
-	?></div>
+	</div>
 	<!-- 劇集列表 -->
 	<a name="list"></a>
 	<div class="panel panel-theme">
@@ -222,7 +223,8 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 			<h3 class="panel-title">網友互動</h3>
 		</div>
 		<div class="panel-body">
-			XDD
+			<div class="fb-comments" data-href="http:<?php echo $URLPv; ?>" data-width="100%" data-numposts="10" data-colorscheme="dark" data-order-by="reverse_time">
+			</div>	
 		</div>
 	</div>
 </div>

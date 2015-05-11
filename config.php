@@ -10,6 +10,10 @@
 	$titleName = "心理罪 | 愛奇藝 | 台灣"; 
 	$logoName = "logo_green.png"; 
 	$iconName = "iqiyi.ico"; 
-	$actName = "evilminds"
+	$actName = "evilminds"; 
+
+	// facebook comment
+	$FBCommentID = "100922380244479"; 
+	$FBAdminID = "100000123260202"; 
 
 ?>
