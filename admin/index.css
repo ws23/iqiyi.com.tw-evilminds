@@ -50,22 +50,6 @@ img.act-logo {
 
 /* body */
 
-.focus {
-	background-color: #090404;
-	width: 920px;
-	height: 540px;  
-	position: relative; 
-	left: 50%; 
-	margin-left: -460px; 
-	text-align: center; 
-	padding: 10px;  
-}
-
-embed.embed {
-	width: 900px; 
-	height: 520px; 
-}
-
 .panel {
 	margin-top: 70px; 	
 }
@@ -88,57 +72,7 @@ embed.embed {
 	color: #AAAAAA; 	
 }
 
-.video {
-	width: 120px;
-	margin: 5px;  
-	display: inline-block; 	
-
-}
-
-.video img {
-	width: 116px; 
-	height: 65px; 
-}
-
-.next {
-	display: inline-block; 
-	width: 165px;
-	margin-left: 12px;
-	margin-right: 12px; 
-	margin-top: 10px; 
-	margin-bottom: 10px;   
-}
-
-.next img {
-	width: 160px; 
-	height: 90px; 		
-}
-
-
-.other {
-	display: inline-block; 
-	width: 165px; 
-	margin-left: 12px; 
-	margin-right: 12px; 
-	margin-top: 10px; 
-	margin-bottom: 10px; 	
-}
-
-.other img {
-	width: 160px; 
-	height: 90px; 	
-}
-
-.photo img {
-	width: 160px; 
-	height: 90px;
-	margin-left: 14px; 
-	margin-right: 14px; 
-	margin-top: 10px; 
-	margin-bottom: 10px; 
-}
-
-img.full {
-	width: 	940px; 
-	height: 576px; 
+input.html {
+	width: 100%; 
+	height: 300px;
 }

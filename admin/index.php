@@ -24,6 +24,7 @@ require_once(dirname(__FILE__) . "/../lib/std.php") ;
 <body>
 <?php
 if(isset($_SESSION['UID'])) { // 已登入
+	setlog($DBmain, 'info', 'enter admin interface', $_SESSION['UID']); 
 ?>
 <!-- header start -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -125,7 +126,7 @@ function Action(type, id) {
 <?php
 if($_GET['admin']=="list"){
 ?>
-<form action="edit.php" method="post">
+<form action="edit.php" method="post" enctype="multipart/form-data">
 <div class="panel panel-theme">
 	<div class="panel-heading"><h2>劇集列表</h2></div>
 	<table class="table">
@@ -239,7 +240,7 @@ if($_GET['admin']=="list"){
 }
 else if($_GET['admin']=="next"){
 ?>
-<form action="edit.php" method="post">
+<form action="edit.php" method="post" enctype="multipart/form-data">
 <div class="panel panel-theme">
 	<div class="panel-heading"><h2>預告片</h2></div>
 	<table class="table">
@@ -341,7 +342,7 @@ else if($_GET['admin']=="next"){
 }
 else if($_GET['admin']=="other"){
 ?>
-<form action="edit.php" method="post">
+<form action="edit.php" method="post" enctype="multipart/form-data">
 <div class="panel panel-theme">
 	<div class="panel-heading"><h2>精彩花絮</h2></div>
 	<table class="table">
@@ -490,6 +491,7 @@ else if(isset($_POST['UID']) && isset($_POST['UPW'])) { // 登入驗證
 	else if( $row['UPW']==md5($userPW) ) {
 		setLog($DBmain, "info", "Login Success!!", $userName);
 		$_SESSION['UID'] = $userName; 
+		$DBmain->query("UPDATE `admin` SET `loginTime` = CURRENT_TIMESTAMP WHERE `UID` = '{$userName}'; ");
 		locate('index.php'); 
 	}
 	else {
@@ -502,6 +504,7 @@ else if(isset($_POST['UID']) && isset($_POST['UPW'])) { // 登入驗證
 	require_once(dirname(__FILE__) . '/../lib/stdEnd.php'); 
 }
 else { // 登入介面	
+	setLog($DBmain, 'info', 'enter admin login interface'); 
 ?>
 <div class="container">
 	<div class="panel panel-info">
