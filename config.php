@@ -14,6 +14,5 @@
 
 	// facebook comment
 	$FBCommentID = "100922380244479"; 
-	$FBAdminID = "100000123260202"; 
 
 ?>

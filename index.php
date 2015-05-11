@@ -11,7 +11,6 @@
 	<meta name="description" content="">
 	<meta name="author" content="臺灣愛奇藝股份有限公司">
 	<meta property="fb:app_id" content="<?php echo $FBCommentID; ?>">
-	<meta property="fb:admins" content="<?php echo $FBAdminID; ?>"/>
 
 	<title><?php echo $titleName; ?></title>
 
