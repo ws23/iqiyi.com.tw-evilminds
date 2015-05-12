@@ -35,6 +35,23 @@
 	</noscript>
 <!-- End comScore Tag -->
 
+<!--
+Start of DoubleClick Floodlight Tag: Please do not remove
+Activity name of this tag: Click Exclusion
+URL of the webpage where the tag is expected to be placed: http://www.iqiyi.com
+This tag must be placed between the <body> and </body> tags, as close as possible to the opening tag.
+Creation Date: 05/12/2015
+-->
+	<script type="text/javascript">
+		var axel = Math.random() + "";
+		var a = axel * 10000000000000;
+		document.write('<iframe src="https://4861630.fls.doubleclick.net/activityi;src=4861630;type=invmedia;cat=0lqxydlz;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+	</script>
+	<noscript>
+		<iframe src="https://4861630.fls.doubleclick.net/activityi;src=4861630;type=invmedia;cat=0lqxydlz;ord=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+	</noscript>
+<!-- End of DoubleClick Floodlight Tag: Please do not remove -->
+
 	<?php require_once(dirname(__FILE__) . '/lib/std.php'); ?> 
 </head>
 <body class="outliner">
@@ -64,7 +81,7 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.php"><img class="logo" src="<?php echo $URLPv . "img/" . $logoName; ?>"/></a>
+				<a class="navbar-brand" href="<?php echo "//" . $HOST; ?>"><img class="logo" src="<?php echo $URLPv . "img/" . $logoName; ?>"/></a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
@@ -73,7 +90,7 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 					<li><a href="#next">預告片</a></li>
 					<li><a href="#other">精彩花絮</a></li>
 					<li><a href="#photo">劇照</a></li>
-					<li><a href="#activity">抽獎活動</a></li>
+<!--					<li><a href="#activity">抽獎活動</a></li>-->
 					<li><a href="#fb">網友互動</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -203,7 +220,7 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 	</div>
 
 	<!-- 抽獎活動 -->
-	<a name="activity"></a>
+<!--	<a name="activity"></a>
 	<div class="panel panel-theme">
 		<div class="panel-heading">
 			<h3 class="panel-title">抽獎活動</h3>
@@ -213,7 +230,7 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 			require_once(dirname(__FILE__) . "/rules.php"); 
 		?>
 	</div>
-</div>
+</div>-->
 
 <!-- 網友互動 -->
 	<a name="fb"></a>
