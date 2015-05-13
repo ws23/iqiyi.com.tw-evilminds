@@ -26,19 +26,23 @@
 			while($row = $result->fetch_array(MYSQLI_BOTH)) {
 				$tmp = $arr . '_' . $row['id'] . '_'; 
 
+				
+				$str = ""; 
+                if($_POST[$tmp . 'state'] == "able")  
+                    $str .= "`state` = 0";
+                else if($_POST[$tmp . 'state'] == "disable")
+                    $str .= "`state` = 1";
+                else 
+				    setLog($DBmain, 'error', 'have error post `state`', $_SESSION['UID']); 
+				if($str!="")
+					$DBmain->query("UPDATE `{$DBTable}` SET {$str} WHERE `id` = {$row['id']}; "); 
+
+
 				if($_POST[$tmp . 'act'] == "read")
 					continue; 
 
 				else if($_POST[$tmp . 'act'] == "edit") {
 					$str = "UPDATE `{$DBTable}` SET `title` = '{$_POST[$tmp . 'title']}', `text` = '{$_POST[$tmp . 'text']}', `linkURL` = '{$_POST[$tmp . 'link']}'"; 
-					if($_POST[$tmp . 'state'] == "able")
-						$str .= ", `state` = 0"; 
-					else if($_POST[$tmp . 'state'] == "disable")	
-						$str .= ", `state` = 1"; 
-					else {
-						setLog($DBmain, 'error', 'have error post `state`', $_SESSION['UID']); 
-						continue; 
-					}
 					if($arr == 'v')
 						$str .= ", `videoURL` = '{$_POST[$tmp . 'video']}'"; 
 					$str .= " WHERE `id` = {$row['id']}; "; 
