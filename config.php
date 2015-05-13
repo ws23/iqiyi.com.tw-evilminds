@@ -3,7 +3,7 @@
 	// folder
 	$HOST = $_SERVER['HTTP_HOST']; 
 	$URI = $_SERVER['REQUEST_URI']; 
-	$folderRoot = "/iqiyi/act/evilminds/"; 
+	$folderRoot = "/act/evilminds/"; 
 	$URLPv = "//{$HOST}{$folderRoot}"; 
 
 	// Content

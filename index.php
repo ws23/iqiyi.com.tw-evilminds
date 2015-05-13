@@ -84,6 +84,11 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
+<?php
+	$result = $DBmain->query("SELECT * FROM `main` WHERE `engName` = '{$actName}'; "); 
+	$row = $result->fetch_array(MYSQLI_BOTH);
+	$AID = $row['id'];  
+?>
 <!-- preprocess end -->
 
 <!-- header start -->
@@ -156,7 +161,7 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 		</div>
 		<div class="panel-body">
 		<?php 
-			$result = $DBmain->query("SELECT * FROM `video` WHERE `state` = 0 ORDER BY `id` ASC; "); 
+			$result = $DBmain->query("SELECT * FROM `video` WHERE `state` = 0 AND `mainID` = {$AID} ORDER BY `id` ASC; "); 
 			while($row = $result->fetch_array(MYSQLI_BOTH)){ 
 		?>
 			<div class="video">
@@ -176,7 +181,7 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 		</div>
 		<div class="panel-body">
 		<?php 
-			$result = $DBmain->query("SELECT * FROM `next` WHERE `state` = 0 ORDER BY `id` ASC; "); 
+			$result = $DBmain->query("SELECT * FROM `next` WHERE `state` = 0 AND `mainID` = {$AID} ORDER BY `id` ASC; "); 
 			while($row = $result->fetch_array(MYSQLI_BOTH)){
 		?>
 			<div class="next">
@@ -196,7 +201,7 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 		</div>
 		<div class="panel-body">
 		<?php 
-			$result = $DBmain->query("SELECT * FROM `other` WHERE `state` = 0 ORDER BY `id` DESC; "); 
+			$result = $DBmain->query("SELECT * FROM `other` WHERE `state` = 0 AND `mainID` = {$AID} ORDER BY `id` DESC; "); 
 			while($row = $result->fetch_array(MYSQLI_BOTH)) {
 		 ?>
 			<div class="other">
@@ -223,7 +228,7 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 		</div>
 		<div class="panel-body">
 		<?php 
-			$result = $DBmain->query("SELECT * FROM `photo` WHERE `state` = 0 ORDER BY `id` ASC LIMIT 10; "); 
+			$result = $DBmain->query("SELECT * FROM `photo` WHERE `state` = 0 AND `mainID` = {$AID} ORDER BY `id` ASC LIMIT 10; "); 
 			$row = $result->fetch_array(MYSQLI_BOTH); 
 		?>
 			<img id ="photo-full" class="full" src="<?php echo $URLPv . $row['full']; ?>" />

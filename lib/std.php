@@ -16,6 +16,4 @@
 	$DBmain->query('SET character_set_database = "utf8"; '); 
 	$DBmain->query('SET character_set_server = "utf8"; '); 
 	
-	
-
 ?> 

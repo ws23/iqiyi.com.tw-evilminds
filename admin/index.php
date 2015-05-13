@@ -112,6 +112,13 @@ function Action(type, id) {
 		NoEdit(type, id); 
 }
 </script>
+
+<?php 
+	echo "QAQ"; 
+	$result = $DBmain->query("SELECT * FROM `main` WHERE `engName` = '{$actName}'; ");  
+	$row = $result->fetch_array(MYSQLI_BOTH); 
+	$AID = $row['id'];
+?>
 <!-- preporcess end -->
 
 <div class="container">
@@ -136,7 +143,7 @@ if($_GET['admin']=="list"){
 		</thead>
 		<tbody>
 <?php
-		$result = $DBmain->query("SELECT * FROM `video` WHERE `state` < 2 ORDER BY `id` ASC; "); 			
+		$result = $DBmain->query("SELECT * FROM `video` WHERE `state` < 2 AND `mainID` = {$AID} ORDER BY `id` ASC; "); 			
 		while($row = $result->fetch_array(MYSQLI_BOTH)){
 ?>
 			<tr>
@@ -249,7 +256,7 @@ else if($_GET['admin']=="next"){
 		</thead>
 		<tbody>
 <?php
-		$result = $DBmain->query("SELECT * FROM `next` WHERE `state` < 2 ORDER BY `id` ASC; "); 			
+		$result = $DBmain->query("SELECT * FROM `next` WHERE `state` < 2 AND `mainID` = {$AID} ORDER BY `id` ASC; "); 			
 		while($row = $result->fetch_array(MYSQLI_BOTH)){
 ?>
 			<tr>
@@ -351,7 +358,7 @@ else if($_GET['admin']=="other"){
 		</thead>
 		<tbody>
 <?php
-		$result = $DBmain->query("SELECT * FROM `other` WHERE `state` < 2 ORDER BY `id` ASC; "); 			
+		$result = $DBmain->query("SELECT * FROM `other` WHERE `state` < 2 AND `mainID` = {$AID} ORDER BY `id` ASC; "); 			
 		while($row = $result->fetch_array(MYSQLI_BOTH)){
 ?>
 			<tr>
