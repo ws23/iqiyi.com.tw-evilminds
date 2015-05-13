@@ -106,18 +106,10 @@ function Action(type, id) {
 	
 	if(state == "edit")
 		Edit(type, id); 
-	else if(state == "delete"){
-		var r = confirm('你確定要刪除嗎？'); 
-		if(r == true)
-			alert('此項目將於您儲存所有變更後刪除。'); 
-		else{
-			document.getElementsByName(type + '_' + id + '_act')[0].value = "read"; 
+	else if(state == "delete")
 			NoEdit(type, id); 
-		}
-	}
 	else if(state == "read")
 		NoEdit(type, id); 
-		
 }
 </script>
 <!-- preporcess end -->
