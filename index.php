@@ -52,6 +52,21 @@ Creation Date: 05/12/2015
 	</noscript>
 <!-- End of DoubleClick Floodlight Tag: Please do not remove -->
 
+<!-- Start GA tracking code -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();
+			a=s.createElement(o),m=s.getElementsByTagName(o)[0];
+			a.async=1;
+			a.src=g;
+			m.parentNode.insertBefore(a,m)
+		    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-62920745-1', 'auto');
+			ga('send', 'pageview');
+	</script>
+<!-- End GA tracking code -->
+
 	<?php require_once(dirname(__FILE__) . '/lib/std.php'); ?> 
 </head>
 <body class="outliner">
@@ -130,7 +145,7 @@ setLog($DBmain, 'info', 'into index', ''); ?>
 		$row = $result->fetch_array(MYSQLI_BOTH); 
 	?>
 
-		<embed id="embed" class="embed" src="<?php echo $row['videoURL']; ?>" quality="high" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+		<embed id="embed" class="embed" src="<?php echo $row['videoURL']; ?>" quality="high" align="middle" allowScriptAccess="always" allowFullScreen="true" type="application/x-shockwave-flash"></embed>
 	
 	</div>
 	<!-- 劇集列表 -->
