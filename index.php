@@ -23,7 +23,7 @@
 </head>
 <body class="outliner">
 <!-- preprocess start -->
-setLog($DBmain, 'info', 'into index', ''); ?>
+<?php setLog($DBmain, 'info', 'into index', ''); ?>
 	<div id="fb-root"></div>
 	<script>
 		(function(d, s, id) {
