@@ -81,7 +81,12 @@
 			</div>
 		</div>
 	</nav>
-	<img class="background" src="img/background.png">
+	<div class="cut-background"><img class="background" src="img/background.png"></div>
+	<script>
+		var maxWidth = document.documentElement.clientWidth; 
+		var src = document.getElementsByClassName("cut-background")[0]; 
+		src.style.setProperty("width", maxWidth + "px"); 
+	</script>
 	<img class="act-logo" src="img/evilminds.png">
 <!-- header end -->
 

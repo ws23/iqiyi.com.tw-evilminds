@@ -30,14 +30,19 @@ img.header-like {
 }
 
 img.background {
-	position: absolute; 
-	width: 2000px; 
-	top: 50px; 
+	position: relative; 
+	width: 2000px;
 	left: 50%; 
 	margin-left: -1000px;
 	opacity: 0.45;
 	filter: alpha(opacity=40);   
 	z-index: -1; 
+}
+
+.cut-background {
+	position: absolute;  
+	overflow: hidden;
+	top: 50px;
 }
 
 img.act-logo {
