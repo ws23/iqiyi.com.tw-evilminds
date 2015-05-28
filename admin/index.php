@@ -46,6 +46,7 @@ if(isset($_SESSION['UID'])) { // 已登入
 				<li><a href="<?php echo $URLPv . "admin/index.php?admin=photo"; ?>">劇照</a></li>
 				<li><a href="<?php echo $URLPv . "admin/index.php?admin=activity"; ?>">抽獎活動</a></li>
 				<li><a href="//developers.facebook.com/tools/comments/100922380244479/approved/descending/">網友互動</a></li>
+				<li><a href="<?php echo $URLPv . "admin/index.php?admin=ad"; ?>">廣告版塊</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="<?php echo $URLPv . "admin/index.php?admin=logout"; ?>">登出</a></li>
@@ -60,7 +61,8 @@ if(isset($_SESSION['UID'])) { // 已登入
 function Edit(type, id) {
 	if(id==0) {
 		document.getElementById(type + '_0_title').removeAttribute("style"); 
-		document.getElementById(type + '_0_text').removeAttribute("style"); 
+		if(type != "a")
+			document.getElementById(type + '_0_text').removeAttribute("style"); 
 		document.getElementById(type + '_0_link').removeAttribute("style");
 		document.getElementsByName(type + '_0_state')[0].removeAttribute("style");  
 		document.getElementById(type + '_0_img').removeAttribute("style"); 
@@ -69,7 +71,8 @@ function Edit(type, id) {
 	}
 	else {
 		document.getElementById(type + '_' + id + '_title').removeAttribute("readonly"); 
-		document.getElementById(type + '_' + id + '_text').removeAttribute("readonly"); 
+		if(type != "a")
+			document.getElementById(type + '_' + id + '_text').removeAttribute("readonly"); 
 		document.getElementById(type + '_' + id + '_link_a').setAttribute("style", "display: none; "); 
 		document.getElementById(type + '_' + id + '_link').removeAttribute("style"); 
 		if(type == "v") {
@@ -82,7 +85,8 @@ function Edit(type, id) {
 function NoEdit(type, id) {
 	if(id==0) {
 		document.getElementById(type + '_0_title').setAttribute("style", "display: none; "); 
-		document.getElementById(type + '_0_text').setAttribute("style", "display: none; "); 
+		if(type != "a")
+			document.getElementById(type + '_0_text').setAttribute("style", "display: none; "); 
 		document.getElementById(type + '_0_link').setAttribute("style", "display: none; "); 
 		document.getElementsByName(type + '_0_state')[0].setAttribute("style", "display: none; "); 
 		document.getElementById(type + '_0_img').setAttribute("style", "display: none; "); 
@@ -91,7 +95,8 @@ function NoEdit(type, id) {
 	}
 	else {
 		document.getElementById(type + '_' + id + '_title').setAttribute("readonly", ""); 
-		document.getElementById(type + '_' + id + '_text').setAttribute("readonly", ""); 
+		if(type != "a")
+			document.getElementById(type + '_' + id + '_text').setAttribute("readonly", ""); 
 		document.getElementById(type + '_' + id + '_link_a').removeAttribute("style"); 
 		document.getElementById(type + '_' + id + '_link').setAttribute("style", "display: none; "); 
 		if(type == "v") {
@@ -114,7 +119,6 @@ function Action(type, id) {
 </script>
 
 <?php 
-	echo "QAQ"; 
 	$result = $DBmain->query("SELECT * FROM `main` WHERE `engName` = '{$actName}'; ");  
 	$row = $result->fetch_array(MYSQLI_BOTH); 
 	$AID = $row['id'];
@@ -459,6 +463,97 @@ else if($_GET['admin']=="logout"){
 	session_destroy(); 
 	locate('index.php'); 
 }
+else if($_GET['admin']=="ad"){ ?>
+<form action="edit.php" method="post" enctype="multipart/form-data">
+<div class="panel panel-theme">
+	<div class="panel-heading"><h2>廣告版位</h2></div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="col-md-1">#</th>
+				<th class="col-md-4">識別文字</th>
+				<th class="col-md-1">圖片連結</th>
+				<th class="col-md-1">超連結</th>
+				<th class="col-md-1">狀態</th>
+				<th class="col-md-1">動作</th>
+			</tr>
+		</thead>
+		<tbody>
+<?php
+		$result = $DBmain->query("SELECT * FROM `ad` WHERE `state` < 2 ORDER BY `id` ASC; "); 			
+		while($row = $result->fetch_array(MYSQLI_BOTH)){
+?>
+			<tr>
+				<td><?php echo $row['id']; ?></td>
+				<td>
+					<div class="form-group">
+						<input readonly class="form-control" type="text" name="a_<?php echo $row['id']; ?>_title" id="a_<?php echo $row['id']; ?>_title" placeholder="識別文字" maxlength="255" value="<?php echo $row['title']; ?>" />
+					</div>
+				</td>
+				<td>
+					<a href="<?php echo $URLPv . $row['imageURL']; ?>" target="_blank">圖片</a>
+				</td>
+				<td>
+					<div id="a_<?php echo $row['id']; ?>_link_a">
+						<a href="<?php echo $row['linkURL']; ?>" target="_blank">超連結</a>
+					</div>
+					<div id="a_<?php echo $row['id']; ?>_link" style="display: none; ">
+						<input class="form-control" type="text" name="a_<?php echo $row['id']; ?>_link" placeholder="超連結" value="<?php echo $row['linkURL']; ?>" />
+					</div>
+				</td>
+				<td>
+					<select name="a_<?php echo $row['id']; ?>_state" class="form-control">
+						<option value="able" <?php echo $row['state']=='0'? "selected" : "";  ?>>顯示</option>
+						<option value="disable" <?php echo $row['state']=='1'? "selected" : "";  ?>>隱藏</option>
+					</select>
+				</td>
+				<td>
+					<select onchange="Action('a', <?php echo $row['id']; ?>)" name="a_<?php echo $row['id']; ?>_act" class="form-control">
+						<option value="read" selected>檢視</option>
+						<option value="edit">編輯</option>
+						<option value="delete">刪除</option>
+					</select>
+				</td>
+			</tr>
+<?php
+		}
+?>			
+			<tr>
+				<td></td>
+				<td>
+					<input id="a_0_title" class="form-control" type="text" name="a_0_title" placeholder="識別文字" maxlength="255" style="display: none; "/>
+				</td>
+				<td>
+				</td>
+				<td>
+					<input id="a_0_link" class="form-control" type="text" name="a_0_link" placeholder="超連結" style="display: none; "/>
+				</td>
+				<td>
+					<select name="a_0_state" class="form-control" style="display: none; ">
+						<option value="able" selected>顯示</option>
+						<option value="disable">隱藏</option>
+					</select>
+				</td>
+				<td>
+					<select onchange="Action('a', 0)" name="a_0_act" class="form-control">
+						<option value="read" selected></option>
+						<option value="edit">新增</option>
+					</select>
+				</td>		
+			</tr>
+			<tr>
+				<input class="btn btn-info form-control" type="submit" value="儲存所有變更" />
+			</tr>
+				<tr id="a_0_img" style="display: none; ">
+					<td colspan="2"><p align="right"><span class="label label-info">image Size: 980x100</p></td>
+					<td colspan="3"><input class="form-control" type="file" name="a_0_img" /></td>
+					<td></td>
+				</tr>
+		</tbody>
+	</table>
+</div>
+</form>
+<?php }
 else { ?>
 	<div class="jumbotron">
 		<div class="page-header">
