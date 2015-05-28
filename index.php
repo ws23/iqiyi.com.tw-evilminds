@@ -93,7 +93,12 @@
 	</div>
 	<!-- 廣告版位 -->
 	<div class="ad">
-		<img src="" />
+	<?php 
+		$result = $DBmain->query("SELECT * FROM `ad` WHERE `state` = 0 ORDER BY `id` DESC; "); 
+		while($row = $result->fetch_array(MYSQLI_BOTH)) {
+	?>
+			<a href="<?php echo $row['linkURL']; ?>" target="_blank"><img src="<?php echo $URLPv . $row['imageURL']; ?>"/></a>
+	<?php } ?>
 	</div>
 	<!-- 預告片 -->
 	<a name="next"></a>

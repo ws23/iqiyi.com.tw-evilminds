@@ -103,6 +103,18 @@ embed.embed {
 	height: 65px; 
 }
 
+.ad {
+	margin-top: 5px;
+	margin-bottom: 15px; 
+	text-align: center; 
+}
+
+.ad img {
+	width: 980px; 
+	height: 100px; 	
+}
+
+
 .next {
 	display: inline-block; 
 	width: 165px;
