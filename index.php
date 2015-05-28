@@ -60,7 +60,7 @@
 		function changeVideo(str) {
 			src = document.getElementById('focus'); 
 			src.innerHTML = ""; 
-			src.innerHTML = '<embed id="embed" class="embed" src="' + str + '" quality="high" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>'; 
+			src.innerHTML = '<embed id="embed" class="embed" src="' + str + '-autoplay=1" quality="high" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>'; 
 		}
 
 	</script>
@@ -69,7 +69,7 @@
 		$row = $result->fetch_array(MYSQLI_BOTH); 
 	?>
 
-		<embed id="embed" class="embed" src="<?php echo $row['videoURL']; ?>" quality="high" align="middle" allowScriptAccess="always" allowFullScreen="true" type="application/x-shockwave-flash"></embed>
+		<embed id="embed" class="embed" src="<?php echo $row['videoURL'] . "-autoplay=1"; ?>" quality="high" align="middle" allowScriptAccess="always" allowFullScreen="true" type="application/x-shockwave-flash"></embed>
 	
 	</div>
 	<!-- 劇集列表 -->
@@ -91,7 +91,10 @@
 		<?php } ?>
 		</div>
 	</div>
-
+	<!-- 廣告版位 -->
+	<div class="ad">
+		<img src="" />
+	</div>
 	<!-- 預告片 -->
 	<a name="next"></a>
 	<div class="panel panel-theme">
