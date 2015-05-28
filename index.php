@@ -19,9 +19,31 @@
 	<script src="<?php echo $URLPv; ?>lib/jquery/jquery-1.11.2.js"></script>
 	<script src="<?php echo $URLPv; ?>lib/bootstrap/js/bootstrap.js"></script>
 	<?php include_once("analyticstracking.php"); ?>
-	<?php require_once(dirname(__FILE__) . '/lib/std.php'); ?> 
+	<?php require_once(dirname(__FILE__) . '/lib/std.php'); ?>
+	<script>
+		<?php 
+			$result = $DBmain->query("SELECT * FROM `ad` WHERE `state` = 0; "); 
+			$max = 0; 
+			while($result->fetch_array(MYSQLI_BOTH))
+				$max++; 
+		?>
+		var list_num = 0; 
+		var t;
+		var rot = document.getElementsByClassName("ad-content"); 
+		function rotate(){
+			var list_num_max = <?php echo $max; ?>;
+			if(window.list_num >= list_num_max) 
+				window.list_num = 0; 
+			for(var i=0;i<list_num_max;i++)
+				window.rot[i].setAttribute("class", "ad-content ad-hidden"); 
+			window.rot[list_num].setAttribute("class", "ad-content ad-show"); 
+			window.list_num++; 
+			window.t = setTimeout("rotate()", 5000); 
+		}
+	</script>
+	 
 </head>
-<body class="outliner">
+<body class="outliner" onload="rotate(); ">
 <!-- preprocess start -->
 <?php setLog($DBmain, 'info', 'into index', ''); ?>
 	<div id="fb-root"></div>
@@ -97,7 +119,7 @@
 		$result = $DBmain->query("SELECT * FROM `ad` WHERE `state` = 0 ORDER BY `id` DESC; "); 
 		while($row = $result->fetch_array(MYSQLI_BOTH)) {
 	?>
-			<a href="<?php echo $row['linkURL']; ?>" target="_blank"><img src="<?php echo $URLPv . $row['imageURL']; ?>"/></a>
+			<a href="<?php echo $row['linkURL']; ?>" target="_blank"><img class="ad-content ad-hidden" src="<?php echo $URLPv . $row['imageURL']; ?>"/></a>
 	<?php } ?>
 	</div>
 	<!-- 預告片 -->

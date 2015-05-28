@@ -114,6 +114,14 @@ embed.embed {
 	height: 100px; 	
 }
 
+.ad-show {
+	display: block; 
+}
+
+.ad-hidden {
+	display: none; 	
+}
+
 
 .next {
 	display: inline-block; 
