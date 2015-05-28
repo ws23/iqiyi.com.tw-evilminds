@@ -8,7 +8,7 @@
 		locate('index.php'); 
 	}
 	else {
-		$type = ["v", "n", "o"];
+		$type = ["v", "n", "o", "a"];
 		
 		foreach($type as $arr) {
 			if($arr == 'v')
@@ -17,6 +17,8 @@
 			    $DBTable = "next"; 
 			else if($arr == 'o')
 			    $DBTable = "other"; 
+			else if($arr == 'a')
+				$DBTable = "ad"; 
 			else {
 			    setLog($DBmain, 'error', 'have error type', $_SESSION['UID']); 
 			    continue; 
@@ -42,7 +44,9 @@
 					continue; 
 
 				else if($_POST[$tmp . 'act'] == "edit") {
-					$str = "UPDATE `{$DBTable}` SET `title` = '{$_POST[$tmp . 'title']}', `text` = '{$_POST[$tmp . 'text']}', `linkURL` = '{$_POST[$tmp . 'link']}'"; 
+					$str = "UPDATE `{$DBTable}` SET `title` = '{$_POST[$tmp . 'title']}', `linkURL` = '{$_POST[$tmp . 'link']}'";
+					if($arr != 'a')
+						$str .=", `text` = '{$_POST[$tmp . 'text']}"; 
 					if($arr == 'v')
 						$str .= ", `videoURL` = '{$_POST[$tmp . 'video']}'"; 
 					$str .= " WHERE `id` = {$row['id']}; "; 
@@ -59,14 +63,14 @@
 
 			if($_POST[$arr . '_0_act'] == "edit") {
 				$now = date('Y-m-d', time());
-				var_dump($_FILES) ; 
 				$imgURL = "img/uploads/{$now}-{$_FILES[$arr . '_0_img']['name']}"; 
 
 				move_uploaded_file($_FILES[$arr . '_0_img']['tmp_name'], dirname(__FILE__) . "/../" . $imgURL); 
 				setLog($DBmain, 'info', 'upload image', $_SESSION['UID']); 
 
 				$state = $_POST[$arr . '_0_state'] =="able"? 0:1;
-				$text = $_POST[$arr . '_0_text'] ; 
+				if($arr != 'a')
+					$text = $_POST[$arr . '_0_text'] ; 
 				$title = $_POST[$arr . '_0_title']; 
 				$link = $_POST[$arr . '_0_link']; 
 				
@@ -74,6 +78,8 @@
 					$video = $_POST[$arr . '_0_video']; 
 					$DBmain->query("INSERT INTO `{$DBTable}` (`mainID`, `title`, `text`, `state`, `imageURL`, `linkURL`, `videoURL`) VALUES (1, '{$title}', '{$text}', {$state}, '{$imgURL}', '{$link}', '$video'); "); 
 				}
+				else if($arr =='a')
+					$DBmain->query("INSERT INTO `{$DBTable}` (`title`, `state`, `imageURL`, `linkURL`) VALUE ('{$title}', {$state}, '{$imgURL}', '{$link}'); "); 	
 				else
 					$DBmain->query("INSERT INTO `{$DBTable}` (`mainID`, `title`, `text`, `state`, `imageURL`, `linkURL`) VALUES (1, '{$title}', '{$text}', {$state}, '{$imgURL}', '{$link}'); "); 
 
