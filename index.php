@@ -119,7 +119,7 @@
 		$result = $DBmain->query("SELECT * FROM `ad` WHERE `state` = 0 ORDER BY `id` DESC; "); 
 		while($row = $result->fetch_array(MYSQLI_BOTH)) {
 	?>
-			<a href="<?php echo $row['linkURL']; ?>" target="_blank"><img class="ad-content ad-hidden" src="<?php echo $URLPv . $row['imageURL']; ?>"/></a>
+			<a href="<?php echo $row['linkURL']; ?>" target="_blank"><img class="ad-content ad-hidden" src="<?php echo $AdPv . $row['imageURL']; ?>"/></a>
 	<?php } ?>
 	</div>
 	<!-- 預告片 -->
