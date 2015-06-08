@@ -1,6 +1,11 @@
 <?php 
 	session_start(); 
-	require_once(dirname(__FILE__) . "/../lib/std.php"); 
+	require_once(dirname(__FILE__) . "/../lib/std.php");
+	require_once(dirname(__FILE__) . "/../config.php");  
+
+    $result = $DBmain->query("SELECT * FROM `main` WHERE `engName` = '{$actName}'; ");
+	$row = $result->fetch_array(MYSQLI_BOTH);
+	$AID = $row['id'];  
 
 	if(!isset($_SESSION['UID'])){
 		alert('Login Error. ')	; 
@@ -76,12 +81,12 @@
 				
 				if($arr == 'v') {
 					$video = $_POST[$arr . '_0_video']; 
-					$DBmain->query("INSERT INTO `{$DBTable}` (`mainID`, `title`, `text`, `state`, `imageURL`, `linkURL`, `videoURL`) VALUES (1, '{$title}', '{$text}', {$state}, '{$imgURL}', '{$link}', '$video'); "); 
+					$DBmain->query("INSERT INTO `{$DBTable}` (`mainID`, `title`, `text`, `state`, `imageURL`, `linkURL`, `videoURL`) VALUES ({$AID}, '{$title}', '{$text}', {$state}, '{$imgURL}', '{$link}', '$video'); "); 
 				}
 				else if($arr =='a')
 					$DBmain->query("INSERT INTO `{$DBTable}` (`title`, `state`, `imageURL`, `linkURL`) VALUE ('{$title}', {$state}, '{$imgURL}', '{$link}'); "); 	
 				else
-					$DBmain->query("INSERT INTO `{$DBTable}` (`mainID`, `title`, `text`, `state`, `imageURL`, `linkURL`) VALUES (1, '{$title}', '{$text}', {$state}, '{$imgURL}', '{$link}'); "); 
+					$DBmain->query("INSERT INTO `{$DBTable}` (`mainID`, `title`, `text`, `state`, `imageURL`, `linkURL`) VALUES ({$AID}, '{$title}', '{$text}', {$state}, '{$imgURL}', '{$link}'); "); 
 
 				setLog($DBmain, 'info', "new {$DBTable}"); 
 			}

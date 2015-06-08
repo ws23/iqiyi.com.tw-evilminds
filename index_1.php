@@ -87,12 +87,13 @@
 
 	</script>
 	<div id ="focus" class="focus"><?php
-		$result = $DBmain->query("SELECT `videoURL` FROM `video` WHERE `state` = 0 ORDER BY `id` DESC LIMIT 1; "); 
+		$result = $DBmain->query("SELECT `videoURL` FROM `video` WHERE `state` = 0 AND `mainID` = {$AID} ORDER BY `id` DESC LIMIT 1; "); 
 		$row = $result->fetch_array(MYSQLI_BOTH); 
+		if($result!=NULL){
 	?>
 
 		<embed id="embed" class="embed" src="<?php echo $row['videoURL'] . "-autoplay=1"; ?>" quality="high" align="middle" allowScriptAccess="always" allowFullScreen="true" type="application/x-shockwave-flash"></embed>
-	
+	<?php } ?>
 	</div>
 	<!-- 劇集列表 -->
 	<a name="list"></a>
