@@ -3,6 +3,7 @@ require_once(dirname(__FILE__) . "/../lib/std.php") ;
 ?>
 <!DOCTYPE html>
 <?php require_once(dirname(__FILE__) . "/../config.php"); ?>
+<?php require_once(dirname(__FILE__) . "/../analyticstracking.php"); ?>
 <html>
 <head>
 	<meta charset="utf8">

@@ -28,11 +28,15 @@
 			    setLog($DBmain, 'error', 'have error type', $_SESSION['UID']); 
 			    continue; 
 			}
-
-			$result = $DBmain->query("SELECT * FROM `{$DBTable}` WHERE `state` < 2; "); 
+			if($DBTable == "ad")
+				$result = $DBmain->query("SELECT * FROM `{$DBTable}` WHERE `state` < 2; "); 
+			else
+				$result = $DBmain->query("SELECT * FROM `{$DBTable}` WHERE `state` < 2 AND `mainID` = {$AID}; "); 
 			while($row = $result->fetch_array(MYSQLI_BOTH)) {
 				$tmp = $arr . '_' . $row['id'] . '_'; 
-
+				
+				if(!isset($_POST[$tmp . 'state']))
+					continue; 
 				
 				$str = ""; 
                 if($_POST[$tmp . 'state'] == "able")  
@@ -51,7 +55,7 @@
 				else if($_POST[$tmp . 'act'] == "edit") {
 					$str = "UPDATE `{$DBTable}` SET `title` = '{$_POST[$tmp . 'title']}', `linkURL` = '{$_POST[$tmp . 'link']}'";
 					if($arr != 'a')
-						$str .=", `text` = '{$_POST[$tmp . 'text']}"; 
+						$str .=", `text` = '{$_POST[$tmp . 'text']}'"; 
 					if($arr == 'v')
 						$str .= ", `videoURL` = '{$_POST[$tmp . 'video']}'"; 
 					$str .= " WHERE `id` = {$row['id']}; "; 
@@ -63,7 +67,7 @@
 					setLog($DBmain, 'info', "delete `{$DBTable}` #{$row['id']}", $_SESSION['UID']); 
 				}
 				else
-					setLog($DBmain, 'error', 'have error post `act`', $_SESSION['UID']); 
+					setLog($DBmain, 'error', "have error post `act` ({$tmp}act = {$_POST[$tmp . 'act']})", $_SESSION['UID']); 
 			}
 
 			if($_POST[$arr . '_0_act'] == "edit") {
