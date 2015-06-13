@@ -3,10 +3,9 @@ require_once(dirname(__FILE__) . "/../lib/std.php") ;
 ?>
 <!DOCTYPE html>
 <?php require_once(dirname(__FILE__) . "/../config.php"); ?>
-<?php require_once(dirname(__FILE__) . "/../analyticstracking.php"); ?>
 <html>
 <head>
-	<meta charset="utf8">
+	<meta http-equiv="Content-Type" content="text/html"; charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE-edge">
 	<link rel="shortcut icon" href="<?php echo $URLPv . "img/" . $iconName; ?>" type="image/x-icon">
 	<link rel="icon" href="<?php echo $URLPv . "img/" . $iconName; ?>" type="image/x-icon">
@@ -20,12 +19,12 @@ require_once(dirname(__FILE__) . "/../lib/std.php") ;
 	<link href="<?php echo $URLPv; ?>admin/index.css" rel="stylesheet">
 	<script src="<?php echo $URLPv; ?>lib/jquery/jquery-1.11.2.js"></script>
 	<script src="<?php echo $URLPv; ?>lib/bootstrap/js/bootstrap.js"></script>
-
+	<?php require_once(dirname(__FILE__) . "/../analyticstracking.php"); ?>
 </head>
 <body>
 <?php
 if(isset($_SESSION['UID'])) { // 已登入
-	setlog($DBmain, 'info', 'enter admin interface', $_SESSION['UID']); 
+	setlog($DBmain, 'info', 'enter admin interface', $_SESSION['UID']);
 ?>
 <!-- header start -->
 <nav class="navbar navbar-inverse navbar-fixed-top">

@@ -103,7 +103,7 @@
 		</div>
 		<div class="panel-body">
 		<?php 
-			$result = $DBmain->query("SELECT * FROM `video` WHERE `state` = 0 AND `mainID` = {$AID} ORDER BY `id` ASC; "); 
+			$result = $DBmain->query("SELECT * FROM `video` WHERE `state` = 0 AND `mainID` = {$AID} ORDER BY `id` DESC; "); 
 			while($row = $result->fetch_array(MYSQLI_BOTH)){ 
 		?>
 			<div class="video">
@@ -131,7 +131,7 @@
 		</div>
 		<div class="panel-body">
 		<?php 
-			$result = $DBmain->query("SELECT * FROM `next` WHERE `state` = 0 AND `mainID` = {$AID} ORDER BY `id` ASC; "); 
+			$result = $DBmain->query("SELECT * FROM `next` WHERE `state` = 0 AND `mainID` = {$AID} ORDER BY `id` DESC; "); 
 			while($row = $result->fetch_array(MYSQLI_BOTH)){
 		?>
 			<div class="next">
@@ -178,7 +178,7 @@
 		</div>
 		<div class="panel-body">
 		<?php 
-			$result = $DBmain->query("SELECT * FROM `photo` WHERE `state` = 0 AND `mainID` = {$AID} ORDER BY `id` ASC LIMIT 10; "); 
+			$result = $DBmain->query("SELECT * FROM `photo` WHERE `state` = 0 AND `mainID` = {$AID} ORDER BY `id` DESC; "); 
 			$row = $result->fetch_array(MYSQLI_BOTH); 
 		?>
 			<img id ="photo-full" class="full" src="<?php echo $URLPv . $row['full']; ?>" />
